@@ -68,10 +68,20 @@ const findUser = async(req, res) => {
     console.log(error.message);
     return res.status(500).json(error)
 }
+}
+const getUsers = async(req, res) => {
+    try {
+    const user = await Users.findAll();
 
+    return res.status(200).json(user)
+} catch (error) {
+    console.log(error.message);
+    return res.status(500).json(error)
+}
 }
 module.exports = {
     createUser,
     loginUser,
-    findUser
+    findUser,
+    getUsers
 }

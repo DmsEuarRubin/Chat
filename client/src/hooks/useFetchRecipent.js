@@ -5,7 +5,7 @@ export const useFetchRecipentUser = (chat, user) => {
     const [recipentUser, setRecipentUser] = useState(null);
     const [error, setError] = useState(null);
 
-    const recipentId = chat?.members.find((id) =>  id != user?.id );
+    const recipentId = chat?.members?.find((id) => id != user?.id );
     
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export const useFetchRecipentUser = (chat, user) => {
             setRecipentUser(response)
         }
         getUser();
-    }, []);
-
+    }, [recipentId]);
     return { recipentUser }
+
 }

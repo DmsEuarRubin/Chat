@@ -4,6 +4,7 @@ const controller = require('../controllers/userController');
 
 router.post('/createUser', controller.createUser);
 router.post('/loginUser', controller.loginUser);
-router.get('/find/:userId', controller.findUser );
+router.get('/find/:userId', controller.findUser);
+router.get("/", controller.getUsers)
 
 module.exports = router;

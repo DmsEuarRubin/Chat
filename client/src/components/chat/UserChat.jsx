@@ -1,9 +1,12 @@
 import { useFetchRecipentUser } from "../../hooks/useFetchRecipent";
 import { Stack } from "react-bootstrap";
 import avatar from "../../assets/avatar.jpg"
+import { useContext } from "react";
+import { ChatContext } from "../../context/ChatContext";
 
 const UserChat = ({ chat, user }) => {
     const { recipentUser } = useFetchRecipentUser(chat, user)
+    const { onlineUsers } = useContext(ChatContext);
 
 
     return (
@@ -13,19 +16,16 @@ const UserChat = ({ chat, user }) => {
             className="user-card align-items-center p-2 justify-content-between">
             <div className="d-flex">
                 <div className="me-2">
-                    <img src={avatar} height="35px"/>
+                    <img src={avatar} height="35px" />
                 </div>
                 <div className="text-content">
                     <div className="name">{recipentUser?.name}</div>
-                    <div className="text">Text Message</div>
                 </div>
             </div>
             <div className="d-flex flex-column align-items-end">
-                <div className="date">12/12/2022</div>
-                <div className="this-user-notifications">5</div>
-                <span className="user-online"></span>
+                <span className={onlineUsers?.some((user) => user?.userId == recipentUser?.id) ? "user-online" : ""}></span>
             </div>
-        </Stack>
+        </Stack >
     );
 }
 
